@@ -1,0 +1,19 @@
+(footprint "Slide Pot Cutout" (version 20211014) (generator pcbnew)
+  (layer "F.Cu")
+  (tedit 0)
+  (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp 6381bb3e-98f4-4730-9764-ebde9669041b)
+  )
+  (fp_text value "Slide Pot Cutout" (at 0 1 unlocked) (layer "F.Fab") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp d07825e2-e26b-4629-a853-92a144b1987b)
+  )
+  (fp_text user "${REFERENCE}" (at 0 2.5 unlocked) (layer "F.Fab") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp 1d367490-abde-4b7f-9e13-910c48e0e609)
+  )
+  (fp_rect (start -1 25) (end 1 -25) (layer "Edge.Cuts") (width 0.12) (fill none) (tstamp ed9e0acf-c706-48a0-809a-7e597caf13ed))
+  (fp_circle (center 0 -28) (end 1 -28) (layer "Edge.Cuts") (width 0.12) (fill none) (tstamp 167125e5-e065-4be9-a6ad-66522d85775b))
+  (fp_circle (center 0 28) (end 1 28) (layer "Edge.Cuts") (width 0.12) (fill none) (tstamp db8ead9f-4045-4693-ab09-93cb4cdf81e2))
+)

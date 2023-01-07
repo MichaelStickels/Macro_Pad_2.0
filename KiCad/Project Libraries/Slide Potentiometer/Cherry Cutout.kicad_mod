@@ -1,0 +1,13 @@
+(footprint "Cherry Cutout" (version 20211014) (generator pcbnew)
+  (layer "F.Cu")
+  (tedit 0)
+  (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp 7e9fe7b5-0914-4570-a929-8fa6f1493257)
+  )
+  (fp_text value "Cherry Cutout" (at 0 1 unlocked) (layer "F.Fab") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp 4d87cb39-8412-4d1e-8618-aa11c84d5f33)
+  )
+  (fp_rect (start -7 7) (end 7 -7) (layer "Edge.Cuts") (width 0.12) (fill none) (tstamp 608c99fc-8779-4b23-966a-d34fb6052c91))
+)
