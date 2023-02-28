@@ -1,6 +1,0 @@
-(sym_lib_table
-  (lib (name "MX_Alps_Hybrid")(type "Legacy")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/MX_Alps_Hybrid/Schematic Library/MX_Alps_Hybrid.lib")(options "")(descr ""))
-  (lib (name "random-keyboard-parts")(type "Legacy")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/random-keyboard-parts.pretty/Schematic Library/random-keyboard-parts.lib")(options "")(descr ""))
-  (lib (name "Seeeduino XIAO")(type "Legacy")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/Seeeduino XIAO KICAD/Seeeduino XIAO.lib")(options "")(descr ""))
-  (lib (name "PTA4543-2015DPB103")(type "KiCad")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/Slide Potentiometer/PTA4543-2015DPB103.kicad_sym")(options "")(descr ""))
-)
