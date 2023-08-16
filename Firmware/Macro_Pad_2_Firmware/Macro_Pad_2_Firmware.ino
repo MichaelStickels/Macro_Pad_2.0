@@ -21,6 +21,7 @@
 const int NUM_SLIDERS = 3;
 const int analogInputs[NUM_SLIDERS] = {7, 8, 9};
 int analogSliderValues[NUM_SLIDERS];
+float coefficient;
 
 
 // Keypad setup
@@ -46,6 +47,9 @@ void setup() {
 
   // 10s delay for interrupting setup with programming if needed
   delay(10000);
+
+
+  coefficient = 1023 / pow(1023, 2);
 
 
   // Initiate Deej sliders
@@ -107,6 +111,10 @@ void loop() {
 
 
 // Deej helper functions
+
+int valueFunction(int value) {
+  return round(coefficient * pow(value - 1023,2));
+}
 
 void updateSliderValues() {
   for (int i = 0; i < NUM_SLIDERS; i++) {
