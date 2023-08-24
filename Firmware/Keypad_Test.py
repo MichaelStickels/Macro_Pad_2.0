@@ -29,6 +29,7 @@ import board
 km = keypad.KeyMatrix(
     row_pins=(board.D2, board.D1, board.D0),
     column_pins=(board.D4, board.D5, board.D6),
+    columns_to_anodes=True,
 )
 
 while True:
