@@ -8,6 +8,22 @@
 
   GPL-3.0 License
 
+
+
+Seeeduino XIAO pin assignments:
+    D0  - Keypad row 3
+    D1  - Keypad row 2
+    D2  - Keypad row 1
+    D3  - DRGB LED
+    D4  - Keypad column 1
+    D5  - Keypad column 2
+    D6  - Keypad column 3
+    A7  - Slider pot 3
+    A8  - Slider pot 2
+    A9  - Slider pot 1
+    D10 - Button
+
+
 """
 
 # Imports
@@ -21,11 +37,12 @@ slider_pins = [AnalogIn(board.A9), AnalogIn(board.A8), AnalogIn(board.A7)]
 coefficient = 1023 / 1023**2
 
 
-# Helper Functions
+
 
 # Deej Helper
 def get_voltage(pin):
     return round(coefficient * pow(pin.value * 1023 / 65535 - 1023, 2))
+
 
 
 # Loop

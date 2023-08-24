@@ -1,3 +1,14 @@
+"""
+
+  Macro_Keypad_2.0 Deej Functionality Tester
+
+  Created by Michael Stickels
+
+  GPL-3.0 License
+
+"""
+
+
 import time
 import board
 from analogio import AnalogIn
