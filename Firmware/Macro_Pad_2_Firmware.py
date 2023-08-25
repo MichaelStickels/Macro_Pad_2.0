@@ -50,6 +50,7 @@ Button Layout:
 
 """
 
+import config
 import adafruit_matrixkeypad
 import board
 import time
@@ -82,9 +83,9 @@ slider_pins = [AnalogIn(board.A9), AnalogIn(board.A8), AnalogIn(board.A7)]
 # Initialize RGB
 pixel_pin = board.D3
 num_pixels = 50
-RGB_brightness = 0.01
+#RGB_brightness = 0.01
 RGB_tick = 0
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=RGB_brightness, auto_write=False)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = config.RGB_brightness, auto_write = False)
 
 
 # Keyboard input helper

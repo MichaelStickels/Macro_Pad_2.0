@@ -1,0 +1,1 @@
+RGB_brightness = 0.01
