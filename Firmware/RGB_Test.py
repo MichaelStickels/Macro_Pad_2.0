@@ -9,32 +9,29 @@
 """
 
 
-import time
 import board
+import digitalio
+from adafruit_debouncer import Debouncer
 from rainbowio import colorwheel
 import neopixel
 
+pin = digitalio.DigitalInOut(board.D10)
+pin.direction = digitalio.Direction.INPUT
+pin.pull = digitalio.Pull.DOWN
+switch = Debouncer(pin, interval = 0.1)
+
+# Initialize RGB
 pixel_pin = board.D3
 num_pixels = 50
-
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.01, auto_write=False)
-
-
-def rainbow_cycle(wait):
-    for j in range(255):
-        for i in range(num_pixels):
-            rc_index = (i * 256 // num_pixels) + j
-            pixels[i] = colorwheel(rc_index & 255)
-        pixels.show()
-        time.sleep(wait)
-
-
-RED = (255, 0, 0)
-YELLOW = (255, 150, 0)
-GREEN = (0, 255, 0)
-CYAN = (0, 255, 255)
-BLUE = (0, 0, 255)
-PURPLE = (180, 0, 255)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.1, auto_write=False)
 
 while True:
-    rainbow_cycle(0)  # Increase the number to slow down the rainbow
+    switch.update()
+    if switch.fell:
+        print("Just released")
+        pixels.fill((255,0,0))
+        pixels.show
+    if switch.rose:
+        print("Just pressed")
+        pixels.fill((0,0,255))
+        pixels.show
