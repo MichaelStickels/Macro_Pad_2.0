@@ -48,18 +48,18 @@ Button Layout:
     |                 | |                 | |                 |
     +-----------------+ +-----------------+ +-----------------+
 
-  
-
 """
 
 import adafruit_matrixkeypad
 import board
 import time
 import usb_hid
+import neopixel
 from analogio import AnalogIn
 from digitalio import DigitalInOut
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
+from rainbowio import colorwheel
 
 
 # Setup and initialize 3x3 matrix keypad
@@ -77,30 +77,53 @@ kbd = Keyboard(usb_hid.devices)
 
 # Initialize Deej sliders
 slider_pins = [AnalogIn(board.A9), AnalogIn(board.A8), AnalogIn(board.A7)]
-coefficient = 1023 / 1023**2
+
+
+# Initialize RGB
+pixel_pin = board.D3
+num_pixels = 50
+RGB_brightness = 0.01
+RGB_tick = 0
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=RGB_brightness, auto_write=False)
 
 
 # Keyboard input helper
 def send_keys(x):
-    if x == 1:    kbd.send(Keycode.F15)
-    elif x == 2:  kbd.send(Keycode.F16)
-    elif x == 3:  kbd.send(Keycode.F14)
-    elif x == 4:  kbd.send(Keycode.GUI, Keycode.G)
-    elif x == 5:  kbd.send(Keycode.GUI, Keycode.ALT, Keycode.R)
-    elif x == 6:  kbd.send(Keycode.GUI, Keycode.ALT, Keycode.G)
-    elif x == 7:  kbd.send(Keycode.F13)
-    elif x == 8:  kbd.send(Keycode.GUI, Keycode.ALT, Keycode.PRINT_SCREEN)
-    elif x == 9:  kbd.send(Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN)
+    if x == 1:
+        kbd.send(Keycode.F15)
+    elif x == 2:
+        kbd.send(Keycode.F16)
+    elif x == 3:
+        kbd.send(Keycode.F14)
+    elif x == 4:
+        kbd.send(Keycode.GUI, Keycode.G)
+    elif x == 5:
+        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.R)
+    elif x == 6:
+        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.G)
+    elif x == 7:
+        kbd.send(Keycode.F13)
+    elif x == 8:
+        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.PRINT_SCREEN)
+    elif x == 9:
+        kbd.send(Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN)
 
 
 # Deej Helper
 def get_voltage(pin):
-    return round(coefficient * pow(pin.value * 1023 / 65535 - 1023, 2))
+    return round((1023 / 1023 ** 2) * pow(pin.value * 1023 / 65535 - 1023, 2))
 
+
+# RGB Helpers
+def rainbow_cycle(j):
+    for i in range(num_pixels):
+        rc_index = (i * 256 // num_pixels) + j
+        pixels[i] = colorwheel(rc_index & 255)
+    pixels.show()
 
 
 while True:
-    
+
     # Keypad handler
     keys = keypad.pressed_keys
     if keys:
@@ -116,9 +139,13 @@ while True:
     print_string = ""
     for pin in slider_pins:
         print_string += str(get_voltage(pin))
-        if pin != slider_pins[-1]: print_string += "|"
+        if pin != slider_pins[-1]:
+            print_string += "|"
     print(print_string)
 
+    # Update RGB
+    if RGB_tick == 256: RGB_tick = 0
+    rainbow_cycle(RGB_tick)
+    RGB_tick += 1
 
-
-    time.sleep(0.1)
+    #time.sleep(0.1)
