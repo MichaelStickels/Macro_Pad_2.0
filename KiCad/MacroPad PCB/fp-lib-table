@@ -3,4 +3,5 @@
   (lib (name "random-keyboard-parts")(type "KiCad")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/random-keyboard-parts.pretty")(options "")(descr ""))
   (lib (name "Seeeduino XIAO KICAD")(type "KiCad")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/Seeeduino XIAO KICAD")(options "")(descr ""))
   (lib (name "Slide Potentiometer")(type "KiCad")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/Slide Potentiometer")(options "")(descr ""))
+  (lib (name "XIAO_PCB")(type "KiCad")(uri "C:/Users/user/Documents/GitHub/Macro_Pad_2.0/KiCad/Project Libraries/Seeeduino-xiao-rp2040-KiCAD-Library/XIAO_PCB.pretty")(options "")(descr ""))
 )
