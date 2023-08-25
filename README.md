@@ -1,40 +1,51 @@
-# Basic README Template
+# Macro Pad 2.0
 
-Intro to the project and some quick information, followed by an image of the project. Adapted from TINY README Template and other READMEs across GitHub.
+DIY custom macro keypad and [Deej](https://github.com/omriharel/deej) volume control board with RGB based on the Seeed Studio XIAO RP2040 and CircuitPython.
 
 <div align="center">
   <kbd>
-    <img src="images/harrison-broadbent-afZVP8xbbw0-unsplash.jpg" />
+    <img src="images/frank-wang-ogxlyCA1BQc-unsplash.jpg" />
   </kbd>
 </div>
 
 ## Description
 
-Longer description explaining the rationale/intent behind the project, what it's good for, and how it works. If the next two subsections are short enough, they can be merged up into this block—perhaps as bulleted lists.
+After really enjoying my [first DIY macro keypad](https://github.com/MichaelStickels/Macro_Keypad), I set out to create a second iteration of my own unique design that incorporated even more features. Mainly, I wanted to combine custom macro functionality with slide potentiometers for per-app volume control with Deej.
 
 ### Features
 
-- Short and to the point
-- Important things about the project
+- 9 fully programmable custom macro keys
+- 3 volume sliders for use with Deej
+- Fully customizable RGB and onboard button
+- Easily change settings with almost any text editor
+- USB C interface
+- Mechanical switches
+- No driver needed
+- Open source
 
 ### Built with
 
-- Markdown
+- CircuitPython
 - Love
 
-## Getting started
+## Building One Yourself
 
-### Prerequisites
 
-Dependencies not explicitly covered in the installation process; e.g., OS restrictions.
+### PCB Files
 
-### Install
+Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
 
-Ideally, write a script whose usage is described here.
+### Bill Of Materials
+
+Add BOM here
+
+### Software
+
+Add link to necessary python files and description here
 
 ### Configure
 
-Manual, context-specific tasks not covered in the installation process.
+Link to configuration here
 
 ### Usage
 
@@ -50,7 +61,7 @@ Some more photos of the project and the build process.
 
 <div align="center">
   <kbd>
-    <img src="images/frank-wang-ogxlyCA1BQc-unsplash.jpg" />
+    <img src="images/pinout.png"alt="pinout diagram" width="500" />
   </kbd>
     
   caption of what is in this photo
@@ -74,20 +85,20 @@ Some more photos of the project and the build process.
 
 ## Back matter
 
-### Legal disclaimer
-
-Usage of this tool for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program.
 
 ### Acknowledgements
 
-Thanks to all who helped inspire this template.
+Inspiration, code snippets, etc.
+* [Adapted from TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
+
+
 
 ### See also
 
-- [A simple README.md template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
-- [A template to make good README.md](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-- [A sample README for all your GitHub projects](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
-- [A simple README.md template to kickstart projects](https://github.com/me-and-company/readme-template)
+- [Deej](https://github.com/omriharel/deej)
+- [Getting Started with Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/)
+- [My first Macro Keypad](https://github.com/MichaelStickels/Macro_Keypad)
+
 
 ### To-do
 
@@ -97,10 +108,5 @@ Thanks to all who helped inspire this template.
 
 ### License
 
-This project is licensed under the [MIT License](LICENSE.md).
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [Adapted from TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
+This project is licensed under the [GPL-3.0 License](LICENSE.md).
 
