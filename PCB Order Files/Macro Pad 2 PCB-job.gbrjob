@@ -5,7 +5,7 @@
       "Application": "Pcbnew",
       "Version": "7.0.7"
     },
-    "CreationDate": "2024-02-05T11:19:36-08:00"
+    "CreationDate": "2024-02-05T11:41:39-08:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -39,16 +39,6 @@
     {
       "Path": "Macro Pad 2 PCB-B_Cu.gbl",
       "FileFunction": "Copper,L2,Bot",
-      "FilePolarity": "Positive"
-    },
-    {
-      "Path": "Macro Pad 2 PCB-F_Paste.gtp",
-      "FileFunction": "SolderPaste,Top",
-      "FilePolarity": "Positive"
-    },
-    {
-      "Path": "Macro Pad 2 PCB-B_Paste.gbp",
-      "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
