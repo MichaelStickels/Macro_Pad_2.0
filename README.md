@@ -88,8 +88,12 @@ Some more photos of the project and the build process.
 
 ### Acknowledgements
 
-Inspiration, code snippets, etc.
-* [Adapted from TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
+Inspiration from the following projects:
+* [ocreeb-12](https://github.com/sb-ocr/ocreeb-12/tree/main)
+* [DuckyPad](https://github.com/dekuNukem/duckyPad)
+  
+
+README adapted from [TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
 
 
 
@@ -97,14 +101,15 @@ Inspiration, code snippets, etc.
 
 - [Deej](https://github.com/omriharel/deej)
 - [Getting Started with Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/)
-- [My first Macro Keypad](https://github.com/MichaelStickels/Macro_Keypad)
+- My first [Macro Keypad](https://github.com/MichaelStickels/Macro_Keypad)
 
 
 ### To-do
 
-- [ ] Still need to do this
-- [ ] ~~Decided not to do this~~
-- [x] Done!
+- [ ] Completed Python firmware
+- [ ] Print and test enclosure
+- [ ] Photos of finished macropad
+- [ ] Create custom keycaps
 
 ### License
 
