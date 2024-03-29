@@ -10,18 +10,18 @@
 
 
 
-Seeeduino XIAO pin assignments:
-    D0  - Keypad row 3
-    D1  - Keypad row 2
-    D2  - Keypad row 1
-    D3  - DRGB LED
-    D4  - Keypad column 1
-    D5  - Keypad column 2
-    D6  - Keypad column 3
-    A7  - Slider pot 3
-    A8  - Slider pot 2
-    A9  - Slider pot 1
-    D10 - Button
+Seeeduino RP2040 pin assignments:
+    D3  - Keypad row 1
+    D4  - Keypad row 2
+    D5  - Keypad row 3
+    D6  - DRGB LED
+    D10 - Keypad column 1
+    D9  - Keypad column 2
+    D8  - Keypad column 3
+    A0  - Slider pot 3
+    A1  - Slider pot 2
+    A2  - Slider pot 1
+    D7 - Button
 
    
 Button Layout:
@@ -55,7 +55,7 @@ import adafruit_matrixkeypad
 import board
 import time
 import usb_hid
-import neopixel
+# import neopixel
 from analogio import AnalogIn
 from digitalio import DigitalInOut
 from adafruit_hid.keyboard import Keyboard
@@ -64,8 +64,8 @@ from rainbowio import colorwheel
 
 
 # Setup and initialize 3x3 matrix keypad
-cols = [DigitalInOut(x) for x in (board.D0, board.D1, board.D2)]
-rows = [DigitalInOut(x) for x in (board.D6, board.D5, board.D4)]
+cols = [DigitalInOut(x) for x in (board.D10, board.D9, board.D8)]
+rows = [DigitalInOut(x) for x in (board.D5, board.D4, board.D3)]
 keys = ((1, 2, 3), (4, 5, 6), (7, 8, 9))
 keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
 last_pressed = []
@@ -77,15 +77,15 @@ kbd = Keyboard(usb_hid.devices)
 
 
 # Initialize Deej sliders
-slider_pins = [AnalogIn(board.A9), AnalogIn(board.A8), AnalogIn(board.A7)]
+slider_pins = [AnalogIn(board.A0), AnalogIn(board.A1), AnalogIn(board.A2)]
 
 
-# Initialize RGB
-pixel_pin = board.D3
-num_pixels = 50
-#RGB_brightness = 0.01
-RGB_tick = 0
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = config.RGB_brightness, auto_write = False)
+# # Initialize RGB
+# pixel_pin = board.D6
+# num_pixels = 50
+# #RGB_brightness = 0.01
+# RGB_tick = 0
+# pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = config.RGB_brightness, auto_write = False)
 
 
 # Keyboard input helper
@@ -116,11 +116,11 @@ def get_voltage(pin):
 
 
 # RGB Helpers
-def rainbow_cycle(j):
-    for i in range(num_pixels):
-        rc_index = (i * 256 // num_pixels) + j
-        pixels[i] = colorwheel(rc_index & 255)
-    pixels.show()
+# def rainbow_cycle(j):
+#     for i in range(num_pixels):
+#         rc_index = (i * 256 // num_pixels) + j
+#         pixels[i] = colorwheel(rc_index & 255)
+#     pixels.show()
 
 
 while True:
@@ -144,9 +144,9 @@ while True:
             print_string += "|"
     print(print_string)
 
-    # Update RGB
-    if RGB_tick == 256: RGB_tick = 0
-    rainbow_cycle(RGB_tick)
-    RGB_tick += 1
+    # # Update RGB
+    # if RGB_tick == 256: RGB_tick = 0
+    # rainbow_cycle(RGB_tick)
+    # RGB_tick += 1
 
     #time.sleep(0.1)
