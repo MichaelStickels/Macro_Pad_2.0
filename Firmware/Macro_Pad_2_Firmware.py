@@ -3,7 +3,7 @@
   Macro_Keypad_2.0 Firmware
 
   Created by Michael Stickels
-  
+
   Last Updated: *Unreleased*
 
   GPL-3.0 License
@@ -23,9 +23,9 @@ Seeeduino RP2040 pin assignments:
     A2  - Slider pot 1
     D7 - Button
 
-   
+
 Button Layout:
-    
+
     +-----------------+ +-----------------+ +-----------------+
     |                 | |                 | |                 |
     |        1        | |        3        | |        2        |
@@ -52,15 +52,17 @@ Button Layout:
 
 import config
 import adafruit_matrixkeypad
+import supervisor
 import board
 import time
 import usb_hid
-# import neopixel
+import neopixel
 from analogio import AnalogIn
 from digitalio import DigitalInOut
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
 from rainbowio import colorwheel
+
 
 
 # Setup and initialize 3x3 matrix keypad
@@ -80,12 +82,13 @@ kbd = Keyboard(usb_hid.devices)
 slider_pins = [AnalogIn(board.A0), AnalogIn(board.A1), AnalogIn(board.A2)]
 
 
-# # Initialize RGB
-# pixel_pin = board.D6
-# num_pixels = 50
-# #RGB_brightness = 0.01
-# RGB_tick = 0
-# pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = config.RGB_brightness, auto_write = False)
+# Initialize RGB
+pixel_pin = board.D6
+num_pixels = 51
+RGB_brightness = 0.2
+RGB_tick = 0
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, auto_write = False)
+
 
 
 # Keyboard input helper
@@ -116,11 +119,11 @@ def get_voltage(pin):
 
 
 # RGB Helpers
-# def rainbow_cycle(j):
-#     for i in range(num_pixels):
-#         rc_index = (i * 256 // num_pixels) + j
-#         pixels[i] = colorwheel(rc_index & 255)
-#     pixels.show()
+def rainbow_cycle(j):
+    for i in range(num_pixels):
+        rc_index = (i * 256 // num_pixels) + j
+        pixels[i] = colorwheel(rc_index & 255)
+    pixels.show()
 
 
 while True:
@@ -144,9 +147,14 @@ while True:
             print_string += "|"
     print(print_string)
 
-    # # Update RGB
-    # if RGB_tick == 256: RGB_tick = 0
-    # rainbow_cycle(RGB_tick)
-    # RGB_tick += 1
-
-    #time.sleep(0.1)
+    # Update RGB only if USB is connected
+    if supervisor.runtime.usb_connected:    # USB Connected
+        if RGB_tick == 256: RGB_tick = 0
+        rainbow_cycle(RGB_tick)
+        RGB_tick += 1  
+    else:                                   # no USB
+        pixels.fill((0, 0, 0))
+        pixels.show   
+        
+    # Slow the program down a smidge. Is this necessary? Maybe?
+    time.sleep(0.1)
