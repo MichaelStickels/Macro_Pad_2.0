@@ -14,39 +14,15 @@ Seeeduino RP2040 pin assignments:
     D3  - Keypad row 1
     D4  - Keypad row 2
     D5  - Keypad row 3
-    D6  - DRGB LED
+    D6  - ARGB LED
     D10 - Keypad column 1
-    D9  - Keypad column 2
+    D9  - Keypad column 2 
     D8  - Keypad column 3
     A0  - Slider pot 3
     A1  - Slider pot 2
     A2  - Slider pot 1
     D7 - Button
 
-
-Button Layout:
-
-    +-----------------+ +-----------------+ +-----------------+
-    |                 | |                 | |                 |
-    |        1        | |        3        | |        2        |
-    |                 | |                 | |  Sound Switch   |
-    |       F15       | |       F16       | |       F14       |
-    |                 | |                 | |                 |
-    +-----------------+ +-----------------+ +-----------------+
-    +-----------------+ +-----------------+ +-----------------+
-    |                 | |                 | |                 |
-    |        4        | |        5        | |        6        |
-    |   Xbox Overlay  | |     Record      | |   30s Replay    |
-    |      WIN+G      | |    WIN+ALT+R    | |   WIN+ALT+G     |
-    |                 | |                 | |                 |
-    +-----------------+ +-----------------+ +-----------------+
-    +-----------------+ +-----------------+ +-----------------+
-    |                 | |                 | |                 |
-    |        7        | |        8        | |        9        |
-    |      Mute       | |   Screenshot    | |  Print Screen   |
-    |       F13       | | WIN+ALT+PRTSCRN | |CRTL+ALT+PRTSCRN |
-    |                 | |                 | |                 |
-    +-----------------+ +-----------------+ +-----------------+
 
 """
 
@@ -85,7 +61,7 @@ slider_pins = [AnalogIn(board.A0), AnalogIn(board.A1), AnalogIn(board.A2)]
 # Initialize RGB
 pixel_pin = board.D6
 num_pixels = 51
-RGB_brightness = 0.2
+RGB_brightness = 0.13
 RGB_tick = 0
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, auto_write = False)
 
@@ -94,23 +70,23 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, a
 # Keyboard input helper
 def send_keys(x):
     if x == 1:
-        kbd.send(Keycode.F15)
+        kbd.send(Keycode.ALT, Keycode.Z)                                # Open AMD Adrenaline Overlay
     elif x == 2:
-        kbd.send(Keycode.F16)
+        kbd.send(Keycode.CONTROL, Keycode.SHIFT, Keycode.O)             # Toggle AMD Performance Overlay
     elif x == 3:
-        kbd.send(Keycode.F14)
+        kbd.send(Keycode.GUI, Keycode.CONTROL, Keycode.V)               # Open Windows Volume Menu
     elif x == 4:
-        kbd.send(Keycode.GUI, Keycode.G)
+        kbd.send(Keycode.CONTROL, Keycode.SHIFT, Keycode.E)             # Toggle Recording        
     elif x == 5:
-        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.R)
+        kbd.send(Keycode.CONTROL, Keycode.SHIFT, Keycode.S)             # Save Instant Replay
     elif x == 6:
-        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.G)
+        kbd.send(Keycode.CONTROL, Keycode.SHIFT, Keycode.J)             # Save Instant Replay GIF
     elif x == 7:
-        kbd.send(Keycode.F13)
+        kbd.send(Keycode.F16)                                           # Discord Toggle Mute Keybind
     elif x == 8:
-        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.PRINT_SCREEN)
+        kbd.send(Keycode.GUI, Keycode.ALT, Keycode.PRINT_SCREEN)        # Save Screenshot
     elif x == 9:
-        kbd.send(Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN)
+        kbd.send(Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN)    # Copy Screenshot to Clipboard (active window only)
 
 
 # Deej Helper
@@ -124,6 +100,13 @@ def rainbow_cycle(j):
         rc_index = (i * 256 // num_pixels) + j
         pixels[i] = colorwheel(rc_index & 255)
     pixels.show()
+
+# WHITE = (255, 255, 255)
+
+# def white_backlight():
+#     pixels.fill(WHITE)
+#     pixels.show()
+
 
 
 while True:
@@ -148,13 +131,17 @@ while True:
     print(print_string)
 
     # Update RGB only if USB is connected
-    if supervisor.runtime.usb_connected:    # USB Connected
-        if RGB_tick == 256: RGB_tick = 0
-        rainbow_cycle(RGB_tick)
-        RGB_tick += 1  
-    else:                                   # no USB
-        pixels.fill((0, 0, 0))
-        pixels.show   
+    # if supervisor.runtime.usb_connected:    # USB Connected
+    # pixels.fill((100, 0, 0))
+    # pixels.show
+    # else:                                   # no USB
+    # if RGB_tick == 256: RGB_tick = 0
+    rainbow_cycle(RGB_tick)
+    RGB_tick += 1 
+
+    
+    # white_backlight()
+
         
     # Slow the program down a smidge. Is this necessary? Maybe?
     time.sleep(0.1)
