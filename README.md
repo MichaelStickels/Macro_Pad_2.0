@@ -4,7 +4,7 @@ DIY custom macro keypad and [Deej](https://github.com/omriharel/deej) volume con
 
 <div align="center">
   <kbd>
-    <img src="images/macropad_left_.jpg" />
+    <img src="images/macropad_left.jpg" />
   </kbd>
 </div>
 
