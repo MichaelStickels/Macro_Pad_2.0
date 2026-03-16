@@ -4,7 +4,7 @@ DIY custom macro keypad and [Deej](https://github.com/omriharel/deej) volume con
 
 <div align="center">
   <kbd>
-    <img src="images/macropad2.jpg" />
+    <img src="images/macropad_left_.jpg" />
   </kbd>
 </div>
 
@@ -19,17 +19,19 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 - Fully customizable RGB and onboard button
 - Easily change settings with almost any text editor
 - USB C interface
-- Mechanical switches
+- Mechanical keyswitches
 - No driver needed
 - Open source
 
 ### Built with
 
 - CircuitPython
+- Adafruit NeoPixel
+- Adafruit MatrixKeypad
+- Deej
 - Love
 
 ## Building One Yourself
-
 
 ### PCB Files
 
@@ -59,6 +61,23 @@ Or FAQs, if that's more appropriate.
 
 Some more photos of the project and the build process.
 
+
+<div align="center">
+  <kbd>
+    <img src="images/macropad_wide.jpg" />
+  </kbd>
+    
+  caption of what is in this photo
+</div>
+
+<div align="center">
+  <kbd>
+    <img src="images/macropad_top.jpg" />
+  </kbd>
+    
+  caption of what is in this photo
+</div>
+
 <div align="center">
   <kbd>
     <img src="images/pinout.png"alt="pinout diagram" width="500" />
@@ -67,21 +86,6 @@ Some more photos of the project and the build process.
   caption of what is in this photo
 </div>
 
-<div align="center">
-  <kbd>
-    <img src="images/nicolas-thomas-3GZi6OpSDcY-unsplash.jpg" />
-  </kbd>
-    
-  caption of what is in this photo
-</div>
-
-<div align="center">
-  <kbd>
-    <img src="images/sahand-babali-owjrvbyXYyc-unsplash.jpg" />
-  </kbd>
-    
-  caption of what is in this photo
-</div>
 
 ## Back matter
 
@@ -95,21 +99,25 @@ Inspiration from the following projects:
 
 README adapted from [TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
 
-
+Huge shout-out to the [Deej](https://github.com/omriharel/deej) project
 
 ### See also
 
-- [Deej](https://github.com/omriharel/deej)
+
 - [Getting Started with Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/)
 - My first [Macro Keypad](https://github.com/MichaelStickels/Macro_Keypad)
 
 
 ### To-do
 
-- [ ] Completed Python firmware
-- [ ] Print and test enclosure
-- [ ] Photos of finished macropad
-- [ ] Create custom keycaps
+- [x] Implement Deej serial sender in CircuitPython
+- [ ] Implement configuration text file
+- [x] Test and refine 3D printed enclosure
+- [ ] Implement configurable RGB
+- [ ] Implement push button
+- [ ] Expand built-in RGB options
+- [ ] DIY dye sublimation keycaps
+- [ ] Create and publish Deej library for CircuitPython
 
 ### License
 
