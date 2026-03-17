@@ -45,12 +45,28 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
 
 ### Bill Of Materials
+(Where applicable, appropriate DigiKey part numbers are included)
 
-Add BOM here
+1x MacroPad PCB
+1x Seeed Studio XIAO RP2040 [1597-102010428-ND](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010428/14672129)
+9x Cherry MX style keyswitches [CH196-ND](https://www.digikey.com/en/products/detail/cherry-americas-llc/MX1A-E1NN/40084)
+9x Keycaps [1528-5662-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5662/18716469)
+3x 45mm 10k slide potentiometers [PTA4553-2015CPB103-ND](https://www.digikey.com/en/products/detail/bourns-inc/PTA4553-2015CPB103/3781213)
+1x 6x6mm tactile push button
+4x 10kOhm resistors
+9x 1N414B diodes
+1x Side lit 5V RGB LED strip [1528-2499-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3634/8019479)
+1x 3D Printed Case
+8x M2.5 screws
+8x M2.5 heat-set inserts or M2.5 nuts
+6x M2 screws to mount pots
+Some small wire for hand soldering keyswitches
+
 
 ### Software
 
-Add link to necessary python files and description here
+This project relies on the following libraries:
+
 
 ### Configure
 
@@ -110,10 +126,8 @@ Huge shout-out to the [Deej](https://github.com/omriharel/deej) project
 
 ### See also
 
-
 - [Getting Started with Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/)
 - My first [Macro Keypad](https://github.com/MichaelStickels/Macro_Keypad)
-
 
 ### To-do
 
