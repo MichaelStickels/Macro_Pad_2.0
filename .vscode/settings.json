@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "Deej"
-    ]
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }

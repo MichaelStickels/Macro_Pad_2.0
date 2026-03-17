@@ -33,6 +33,13 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 
 ## Building One Yourself
 
+#### Here's what you need:
+1. Custom PCB from an online supplier
+2. 3D printed case
+3. All parts listed on the BOM below
+4. One USB-C cable
+5. Basic soldering tools
+
 ### PCB Files
 
 Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
