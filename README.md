@@ -71,6 +71,10 @@ Some more photos of the project and the build process.
 
 Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
 
+### 3D Printed Case
+
+The case top uses translucent filament as a light pipe for the LEDs. At this revision, the design requires a multi-material printer. If you don't want to implement the RGB, you can print it all in one color on almost any printer.
+
 ### Bill Of Materials  
 [Here](https://www.digikey.com/short/9nwmrv4t) is a DigiKey cart with all electronic components ready to order.
 
@@ -87,7 +91,7 @@ Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pa
 | 1        | Side Lit 5v RGB LED Strip                      | [1528-2499-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3634/8019479)                 |
 | 1        | 3D Printed Case                                |                                                                                                                 |
 | 8        | M2.5 Screws                                    |                                                                                                                 |
-| 8        | M2.5 Heat-set Inserts or Nuts                  |                                                                                                                 |
+| 8        | M2.5 Heat-set Inserts                          |                                                                                                                 |
 | 6        | M2 Screws (to mount pots)                      |                                                                                                                 |
 |          | Some small wire for hand soldering keyswitches |                                                                                                                 |
 
@@ -146,6 +150,7 @@ Huge shout-out to the [Deej](https://github.com/omriharel/deej) project, it's an
 - [ ] Implement configurable RGB
 - [ ] Implement push button to do... something?
 - [ ] Expand built-in RGB options
+- [ ] Revise case to work on single material printers
 - [ ] DIY dye sublimation keycaps
 - [ ] Create and publish Deej library for CircuitPython
 
