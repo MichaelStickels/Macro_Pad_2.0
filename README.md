@@ -33,8 +33,6 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 
 ## Photos
 
-WIP
-
 Some more photos of the project and the build process.
 
 <div align="center">
@@ -46,14 +44,14 @@ Some more photos of the project and the build process.
 
 <div align="center">
   <kbd>
-    <img src="images/schematic.png" />
+    <img src="images/inside_1.png" />
   </kbd>
  <!--  caption of what is in this photo -->
 </div>
 
 <div align="center">
   <kbd>
-    <img src="images/pinout.png"alt="pinout diagram" width="500" />
+    <img src="images/schematic.png />
   </kbd>
  <!--  caption of what is in this photo -->
 </div>
@@ -65,7 +63,7 @@ Some more photos of the project and the build process.
 2. 3D printed case
 3. All parts listed on the BOM below
 4. One USB-C cable
-5. Basic soldering tools
+5. Basic soldering toolsz`
 
 ### PCB Files
 
@@ -73,7 +71,13 @@ Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pa
 
 ### 3D Printed Case
 
-The case top uses translucent filament as a light pipe for the LEDs. At this revision, the design requires a multi-material printer. If you don't want to implement the RGB, you can print it all in one color on almost any printer.
+The case top uses translucent filament as a light pipe for the LEDs. At this revision, the design requires a multi-material printer. If you don't want to implement the RGB, you can print it all in one color on almost any printer. STL, 3MF, and F3D files are included for all parts.
+<div align="center">
+  <kbd>
+    <img src="images/RGB_light_pipe.jpg" />
+  </kbd>
+ <!--  caption of what is in this photo -->
+</div>
 
 ### Bill Of Materials  
 [Here](https://www.digikey.com/short/9nwmrv4t) is a DigiKey cart with all electronic components ready to order.
@@ -96,7 +100,18 @@ The case top uses translucent filament as a light pipe for the LEDs. At this rev
 |          | Some small wire for hand soldering keyswitches |                                                                                                                 |
 
 
+### Assembly
 
+Solder the RP2040, resistors, diodes, and button to the front of the board. 3D-printable bend guides are included to get clean consistent shapes on all the diodes and resistors.
+
+Then install the keyswitches and pots, and flip it over to hand wire the back.
+The PCB features labeled pads on the back to connect the keyswitches, potentiometers, and RGB strip. Hand wiring these is a little tricky but results in a very clean look on the front.
+<div align="center">
+  <kbd>
+    <img src="images/PCB_back.jpg" />
+  </kbd>
+ <!--  caption of what is in this photo -->
+</div>
 
 ### Software
 
@@ -131,7 +146,6 @@ WIP
 Inspiration from the following projects:
 * [ocreeb-12](https://github.com/sb-ocr/ocreeb-12/tree/main)
 * [DuckyPad](https://github.com/dekuNukem/duckyPad)
-  
 
 README adapted from [TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
 
@@ -145,9 +159,9 @@ Huge shout-out to the [Deej](https://github.com/omriharel/deej) project, it's an
 ### To-do
 
 - [x] Implement Deej serial sender in CircuitPython
-- [ ] Implement configuration text file
+- [x] Implement configuration file
 - [x] Test and refine 3D printed enclosure
-- [ ] Implement configurable RGB
+- [x] Implement configurable RGB
 - [ ] Implement push button to do... something?
 - [ ] Expand built-in RGB options
 - [ ] Revise case to work on single material printers
