@@ -51,7 +51,7 @@ Some more photos of the project and the build process.
 
 <div align="center">
   <kbd>
-    <img src="images/schematic.png />
+    <img src="images/schematic.png" />
   </kbd>
  <!--  caption of what is in this photo -->
 </div>
