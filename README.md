@@ -82,7 +82,7 @@ Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pa
 | 9        | Keycaps                                        | [1528-5662-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5662/18716469)                |
 | 3        | 45mm 10k Slide Potentiometers                  | [PTA4553-2015CPB103-ND](https://www.digikey.com/en/products/detail/bourns-inc/PTA4553-2015CPB103/3781213)       |
 | 1        | 6x6mm Tactile Push Button                      | [450-1650-ND](https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/1825910-6/1632536) |
-| 4        | 10kOhm Resistors                               | [MFP-25BRD52-10K](https://www.digikey.com/en/products/detail/yageo/MFP-25BRD52-10K/2058797)                     |
+| 4        | 10kΩ Resistors                                 | [MFP-25BRD52-10K](https://www.digikey.com/en/products/detail/yageo/MFP-25BRD52-10K/2058797)                     |
 | 9        | 1N4148 Diodes                                  | [1N4148FS-ND](https://www.digikey.com/en/products/detail/onsemi/1N4148/458603)                                  |
 | 1        | Side Lit 5v RGB LED Strip                      | [1528-2499-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3634/8019479)                 |
 | 1        | 3D Printed Case                                |                                                                                                                 |
