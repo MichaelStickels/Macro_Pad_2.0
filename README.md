@@ -10,7 +10,7 @@ DIY custom macro keypad and [Deej](https://github.com/omriharel/deej) volume con
 
 ## Description
 
-After really enjoying my [first DIY macro keypad](https://github.com/MichaelStickels/Macro_Keypad), I set out to create a second iteration of my own unique design that incorporated even more features. Mainly, I wanted to combine custom macro functionality with slide potentiometers for per-app volume control with Deej.
+After really enjoying my [first DIY macro keypad](https://github.com/MichaelStickels/Macro_Keypad), I set out to create a second iteration of my own unique design that incorporated even more features. Mainly, I wanted to combine custom macro functionality with slide potentiometers for per-app volume control with Deej. This macro pad prioritizes looks rather than targeting the lowest cost or easiest assembly. The keyswitches are frame-mounted through the PCB so require hand wiring on the back, and the special side lit LED strip for the RGB is a bit spendy. But I am very happy with how it turned out, and it looks great on my desk.
 
 ### Features
 
@@ -31,6 +31,33 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 - Deej
 - Love
 
+## Photos
+
+WIP
+
+Some more photos of the project and the build process.
+
+<div align="center">
+  <kbd>
+    <img src="images/macropad_wide.jpg" />
+  </kbd>
+ <!--  caption of what is in this photo -->
+</div>
+
+<div align="center">
+  <kbd>
+    <img src="images/schematic.png" />
+  </kbd>
+ <!--  caption of what is in this photo -->
+</div>
+
+<div align="center">
+  <kbd>
+    <img src="images/pinout.png"alt="pinout diagram" width="500" />
+  </kbd>
+ <!--  caption of what is in this photo -->
+</div>
+
 ## Building One Yourself
 
 #### Here's what you need:
@@ -44,74 +71,56 @@ After really enjoying my [first DIY macro keypad](https://github.com/MichaelStic
 
 Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
 
-### Bill Of Materials
-(Where applicable, appropriate DigiKey part numbers are included)
+### Bill Of Materials  
+[Here](https://www.digikey.com/short/9nwmrv4t) is a DigiKey cart with all electronic components ready to order.
 
-1x MacroPad PCB
-1x Seeed Studio XIAO RP2040 [1597-102010428-ND](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010428/14672129)
-9x Cherry MX style keyswitches [CH196-ND](https://www.digikey.com/en/products/detail/cherry-americas-llc/MX1A-E1NN/40084)
-9x Keycaps [1528-5662-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5662/18716469)
-3x 45mm 10k slide potentiometers [PTA4553-2015CPB103-ND](https://www.digikey.com/en/products/detail/bourns-inc/PTA4553-2015CPB103/3781213)
-1x 6x6mm tactile push button
-4x 10kOhm resistors
-9x 1N414B diodes
-1x Side lit 5V RGB LED strip [1528-2499-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3634/8019479)
-1x 3D Printed Case
-8x M2.5 screws
-8x M2.5 heat-set inserts or M2.5 nuts
-6x M2 screws to mount pots
-Some small wire for hand soldering keyswitches
+| Quantity | Item                                           | DigiKey Link                                                                                                    |
+|----------|------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| 1        | MacroPad PCB                                   |                                                                                                                 |
+| 1        | Seeed Studio XIAO RP2040                       | [1597-102010428-ND](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010428/14672129)      |
+| 9        | Cherry MX Style Keyswitches                    | [CH196-ND](https://www.digikey.com/en/products/detail/cherry-americas-llc/MX1A-E1NN/40084)                      |
+| 9        | Keycaps                                        | [1528-5662-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5662/18716469)                |
+| 3        | 45mm 10k Slide Potentiometers                  | [PTA4553-2015CPB103-ND](https://www.digikey.com/en/products/detail/bourns-inc/PTA4553-2015CPB103/3781213)       |
+| 1        | 6x6mm Tactile Push Button                      | [450-1650-ND](https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/1825910-6/1632536) |
+| 4        | 10kOhm Resistors                               | [MFP-25BRD52-10K](https://www.digikey.com/en/products/detail/yageo/MFP-25BRD52-10K/2058797)                     |
+| 9        | 1N4148 Diodes                                  | [1N4148FS-ND](https://www.digikey.com/en/products/detail/onsemi/1N4148/458603)                                  |
+| 1        | Side Lit 5v RGB LED Strip                      | [1528-2499-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3634/8019479)                 |
+| 1        | 3D Printed Case                                |                                                                                                                 |
+| 8        | M2.5 Screws                                    |                                                                                                                 |
+| 8        | M2.5 Heat-set Inserts or Nuts                  |                                                                                                                 |
+| 6        | M2 Screws (to mount pots)                      |                                                                                                                 |
+|          | Some small wire for hand soldering keyswitches |                                                                                                                 |
+
+
 
 
 ### Software
 
-This project relies on the following libraries:
+Once soldered up, install the [CircuitPython bootloader](https://circuitpython.org/board/seeeduino_xiao_rp2040/) onto the RP2040 using [these instructions](https://wiki.seeedstudio.com/XIAO-RP2040-with-CircuitPython/).
 
+Then copy the entire contents of the firmware folder to the CIRCUITPYTHON drive. This includes the example configuration and the necessary external libraries.
+
+Press the reset button or unplug and replug the RP2040 and your Macro Pad will be up and running!
+
+For the volume sliders to work you will need to install and configure [Deej](https://github.com/omriharel/deej) using [these instructions](https://github.com/omriharel/deej?tab=readme-ov-file#how-to-run). My Deej config.yaml is included as an example.
 
 ### Configure
 
-Link to configuration here
+The Macro Pad can be easily configured using any text editor, including Notepad.
+
+To keep your file explorer tidy, the Macro Pad does not show up as a storage device by default. To access the drive, hold the 6x6mm pushbutton down while the board boots (either by pressing the reset button or while plugging in).
+
+It will show up on your computer as a new storage drive named MACROPAD. To configure the Pad, edit conig.py in your favorite text editor. In config.py you can edit the macro for each of the 9 keyswitches as well as the RGB mode, color, and brightness. More detailed instructions are in the file.
 
 ### Usage
 
-GIFs are useful here to see the project in action.
+WIP
 
 ### Troubleshooting
 
-Or FAQs, if that's more appropriate.
-
-## Photos
-
-Some more photos of the project and the build process.
-
-
-<div align="center">
-  <kbd>
-    <img src="images/macropad_wide.jpg" />
-  </kbd>
-    
-  caption of what is in this photo
-</div>
-
-<div align="center">
-  <kbd>
-    <img src="images/macropad_top.jpg" />
-  </kbd>
-    
-  caption of what is in this photo
-</div>
-
-<div align="center">
-  <kbd>
-    <img src="images/pinout.png"alt="pinout diagram" width="500" />
-  </kbd>
-    
-  caption of what is in this photo
-</div>
-
+WIP
 
 ## Back matter
-
 
 ### Acknowledgements
 
@@ -122,7 +131,7 @@ Inspiration from the following projects:
 
 README adapted from [TINY README](https://gist.github.com/noperator/4eba8fae61a23dc6cb1fa8fbb9122d45)
 
-Huge shout-out to the [Deej](https://github.com/omriharel/deej) project
+Huge shout-out to the [Deej](https://github.com/omriharel/deej) project, it's an awesome piece of software.
 
 ### See also
 
@@ -135,7 +144,7 @@ Huge shout-out to the [Deej](https://github.com/omriharel/deej) project
 - [ ] Implement configuration text file
 - [x] Test and refine 3D printed enclosure
 - [ ] Implement configurable RGB
-- [ ] Implement push button
+- [ ] Implement push button to do... something?
 - [ ] Expand built-in RGB options
 - [ ] DIY dye sublimation keycaps
 - [ ] Create and publish Deej library for CircuitPython

@@ -70,23 +70,41 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, a
 # Keyboard input helper
 def send_keys(x):
     if x == 1:
-        kbd.send(config.MACRO_1)
+        for key in config.MACRO_1:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 2:
-        kbd.send(config.MACRO_2)
+        for key in config.MACRO_2:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 3:
-        kbd.send(config.MACRO_3)
+        for key in config.MACRO_3:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 4:
-        kbd.send(config.MACRO_4)     
+        for key in config.MACRO_4:
+            kbd.press(key)
+        kbd.release_all()   
     elif x == 5:
-        kbd.send(config.MACRO_5)
+        for key in config.MACRO_5:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 6:
-        kbd.send(config.MACRO_6)
+        for key in config.MACRO_6:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 7:
-        kbd.send(config.MACRO_7)
+        for key in config.MACRO_7:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 8:
-        kbd.send(config.MACRO_8)
+        for key in config.MACRO_8:
+            kbd.press(key)
+        kbd.release_all()
     elif x == 9:
-        kbd.send(config.MACRO_9)
+        for key in config.MACRO_9:
+            kbd.press(key)
+        kbd.release_all()
 
 
 # Deej Helper
