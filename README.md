@@ -172,3 +172,8 @@ Huge shout-out to the [Deej](https://github.com/omriharel/deej) project, it's an
 
 This project is licensed under the [GPL-3.0 License](LICENSE.md).
 
+### Support
+
+Like what I do?  
+<a href="https://www.buymeacoffee.com/michaelstickels" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
