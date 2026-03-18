@@ -44,7 +44,7 @@ Some more photos of the project and the build process.
 
 <div align="center">
   <kbd>
-    <img src="images/inside_1.png" />
+    <img src="images/inside_1.jpg" />
   </kbd>
  <!--  caption of what is in this photo -->
 </div>
