@@ -58,16 +58,16 @@ Some more photos of the project and the build process.
 
 ## Building One Yourself
 
-#### Here's what you need:
+#### Here's what you'll need:
 1. Custom PCB from an online supplier
 2. 3D printed case
 3. All parts listed on the BOM below
 4. One USB-C cable
-5. Basic soldering toolsz`
+5. Basic soldering tools
 
-### PCB Files
+### Custom PCB
 
-Standard PCB Gerber files are [here](https://github.com/MichaelStickels/Macro_Pad_2.0/tree/main/PCB%20Order%20Files). Simply upload these files to the custom PCB manufacturer of your choice to order one for yourself. This project only needs a very basic 2 layer PCB, I recommend white to really show off the RGB!
+PCB Gerber files are included in the release. Simply upload the whole .zip to the custom PCB manufacturer of your choice to order one for yourself (like JLPCB). This project only needs a very basic 2 layer PCB, I recommend white to show off the RGB. Make sure you choose the 'remove mark' or equivilent option to make sure they don't print an order number on the front fo your PCBs.
 
 ### 3D Printed Case
 
