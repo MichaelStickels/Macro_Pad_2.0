@@ -15,10 +15,11 @@ import board, digitalio
 
 # Rename drive for ease of use
 new_name = "macropad"
-storage.remount("/", readonly=False)
 m = storage.getmount("/")
-m.label = new_name
-storage.remount("/", readonly=True)
+if m.label != new_name:  # only write to flash when the name actually changes
+    storage.remount("/", readonly=False)
+    m.label = new_name
+    storage.remount("/", readonly=True)
 
 # Enable USB storage only if button is pressed at boot
 button = digitalio.DigitalInOut(board.D7)
