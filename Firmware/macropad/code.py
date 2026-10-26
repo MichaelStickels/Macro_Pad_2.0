@@ -22,8 +22,6 @@ from analogio import AnalogIn
 from digitalio import DigitalInOut
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.consumer_control import ConsumerControl
-from adafruit_hid.keycode import Keycode
-from adafruit_hid.consumer_control_code import ConsumerControlCode
 from rainbowio import colorwheel
 
 
@@ -40,17 +38,32 @@ SLIDER_3 = board.A2
 RGB_DATA = board.D6
 BUTTON = board.D7
 
+# Timing (seconds). Keys are scanned fast so short taps aren't missed;
+# sliders and LEDs update on their own slower schedules.
+KEY_SCAN_INTERVAL = 0.01
+DEEJ_INTERVAL = 0.1
+RGB_INTERVAL = 0.05
+
+NUM_KEYS = 9
+NUM_PIXELS = 51
+OFF = (0, 0, 0)
+
+# Catch config mistakes at boot instead of on the first keypress
+if len(config.MACROS) != NUM_KEYS:
+    raise ValueError("config.MACROS must have {} entries, found {}".format(
+        NUM_KEYS, len(config.MACROS)))
+
 # Initializations ------------------------------------------------------------
 
 # Setup and initialize 3x3 matrix keypad
 cols = [DigitalInOut(x) for x in (KEY_COL_1, KEY_COL_2, KEY_COL_3)]
 rows = [DigitalInOut(x) for x in (KEY_ROW_1, KEY_ROW_2, KEY_ROW_3)]
-keys = ((1, 2, 3), (4, 5, 6), (7, 8, 9))
-keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
+key_layout = ((1, 2, 3), (4, 5, 6), (7, 8, 9))
+keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, key_layout)
 last_pressed = []
 
-# Initialize HID keyboard input
-time.sleep(1)  # Sleep for a moment to avoid a race condition on some systems (according to Adafruit)
+# Initialize HID devices
+time.sleep(1)  # Avoids a race condition on some systems (according to Adafruit)
 kbd = Keyboard(usb_hid.devices)
 cc = ConsumerControl(usb_hid.devices)
 
@@ -58,56 +71,35 @@ cc = ConsumerControl(usb_hid.devices)
 slider_pins = [AnalogIn(SLIDER_1), AnalogIn(SLIDER_2), AnalogIn(SLIDER_3)]
 
 # Initialize RGB
-pixel_pin = RGB_DATA
-num_pixels = 51
-RGB_brightness = config.RGB_brightness
-RGB_mode = config.RGB_mode
-RGB_color = config.RGB_color
-off = (0,0,0)
-RGB_tick = 0
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, auto_write = False)
+pixels = neopixel.NeoPixel(RGB_DATA, NUM_PIXELS,
+                           brightness=config.RGB_brightness, auto_write=False)
+rgb_tick = 0
 
 
 # Helper Functions  ----------------------------------------------------------
 
-# Keyboard input helper
+def send_macro(macro):
+    """Press every key in the macro at once, then release them all.
+
+    Plain ints are keyboard keys; config.Media(...) entries are media keys.
+    """
+    kb_keys = [k for k in macro if not isinstance(k, config.Media)]
+    media_codes = [k.code for k in macro if isinstance(k, config.Media)]
+    try:
+        if kb_keys:
+            kbd.press(*kb_keys)
+        for code in media_codes:
+            cc.press(code)
+    finally:
+        # Always release, even if something above failed, so no key gets stuck
+        kbd.release_all()
+        if media_codes:
+            cc.release()
+
+
 def send_keys(x):
-    if x == 1:
-        for key in config.MACRO_1:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 2:
-        for key in config.MACRO_2:
-            cc.press(key)
-        kbd.release_all()
-    elif x == 3:
-        for key in config.MACRO_3:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 4:
-        for key in config.MACRO_4:
-            kbd.press(key)
-        kbd.release_all()   
-    elif x == 5:
-        for key in config.MACRO_5:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 6:
-        for key in config.MACRO_6:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 7:
-        for key in config.MACRO_7:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 8:
-        for key in config.MACRO_8:
-            kbd.press(key)
-        kbd.release_all()
-    elif x == 9:
-        for key in config.MACRO_9:
-            kbd.press(key)
-        kbd.release_all()
+    """Send the macro for key number x (1-9)."""
+    send_macro(config.MACROS[x - 1])
 
 
 # Deej Helper
@@ -118,52 +110,60 @@ def get_voltage(pin):
 
 # Rainbow RGB Helper
 def rainbow_update(j):
-    for i in range(num_pixels):
-        rc_index = (i * 256 // num_pixels) + j
+    for i in range(NUM_PIXELS):
+        rc_index = (i * 256 // NUM_PIXELS) + j
         pixels[i] = colorwheel(rc_index & 255)
     pixels.show()
 
 
+def update_keys():
+    global last_pressed
+    pressed = keypad.pressed_keys
+    for key in pressed:
+        if key not in last_pressed:     # newly pressed (not held from before)
+            send_keys(key)
+    last_pressed = pressed
+
+
+def update_deej():
+    line = "|".join(str(get_voltage(pin)) for pin in slider_pins)
+    print(line)  # Deej reads this over serial
+
+
+def update_rgb():
+    global rgb_tick
+    if config.RGB_mode == 'rainbow':
+        rainbow_update(rgb_tick)
+        rgb_tick = (rgb_tick + 2) % 256
+    else:
+        pixels.fill(config.RGB_color)
+        pixels.show()
+
+
 # Running loop ------------------------------------------------------------
+next_deej = 0
+next_rgb = 0
+
 while True:
 
     # Do functions only if USB connection is active
-    if supervisor.runtime.usb_connected:    # checks USB connection
+    if supervisor.runtime.usb_connected:
+        now = time.monotonic()
 
-        # Keypad handler
-        keys = keypad.pressed_keys
-        if keys:                                # If any keys are pressed
-            temp = []
-            for element in keys:
-                if element not in last_pressed:
-                    temp.append(element)        # and any of those keys are newly pressed
-            if len(temp) > 0:
-                send_keys(temp[0])              # send input to computer.
-        last_pressed = keys                     # Stops keys from repeating while held down.
+        update_keys()
 
-        # Deej handler
-        print_string = ""
-        for pin in slider_pins:                     # read value of each slider
-            print_string += str(get_voltage(pin))
-            if pin != slider_pins[-1]:              # put into Deej format
-                print_string += "|"
-        print(print_string)                         # send to computer over serial
+        if now >= next_deej:
+            update_deej()
+            next_deej = now + DEEJ_INTERVAL
 
-        # RGB update
-        if RGB_mode == 'rainbow':
-            if RGB_tick >= 256: RGB_tick = 0
-            rainbow_update(RGB_tick)
-            RGB_tick += 2
-        else:
-            pixels.fill(RGB_color)
-            pixels.show()
+        if now >= next_rgb:
+            update_rgb()
+            next_rgb = now + RGB_INTERVAL
+
+        time.sleep(KEY_SCAN_INTERVAL)
 
     # If USB is not connected, turn off LEDs and don't bother sending data
     else:
-        pixels.fill(off)
+        pixels.fill(OFF)
         pixels.show()
         time.sleep(5)
-
-
-    # Slow the program down a smidge. There are better ways to do this, but this works for now
-    time.sleep(0.1)
