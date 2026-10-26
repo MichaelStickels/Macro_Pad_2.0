@@ -72,10 +72,6 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness = RGB_brightness, a
 
 # Keyboard input helper
 def send_keys(x):
-    print("MACRO_1: ", config.MACRO_1)
-    print("MACRO_2: ", config.MACRO_2)
-    print(Keycode.ALT)
-    print(ConsumerControlCode.PLAY_PAUSE)
     if x == 1:
         for key in config.MACRO_1:
             kbd.press(key)
@@ -146,12 +142,12 @@ while True:
         last_pressed = keys                     # Stops keys from repeating while held down.
 
         # Deej handler
-        # print_string = ""
-        # for pin in slider_pins:                     # read value of each slider
-        #     print_string += str(get_voltage(pin))
-        #     if pin != slider_pins[-1]:              # put into Deej format
-        #         print_string += "|"
-        # print(print_string)                         # send to computer over serial
+        print_string = ""
+        for pin in slider_pins:                     # read value of each slider
+            print_string += str(get_voltage(pin))
+            if pin != slider_pins[-1]:              # put into Deej format
+                print_string += "|"
+        print(print_string)                         # send to computer over serial
 
         # RGB update
         if RGB_mode == 'rainbow':
