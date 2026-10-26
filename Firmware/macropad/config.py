@@ -29,21 +29,24 @@ Keyswitch Layout:
 
 """
 from adafruit_hid.keycode import Keycode
+from adafruit_hid.consumer_control_code import ConsumerControlCode
 
 # Macros
 # Set your macros here. All keys simultaneously (rather than one at a time)
 # Separate each key with a comma
 # Key reference can be found at https://docs.circuitpython.org/projects/hid/en/latest/api.html
 # Keycode.GUI is the Windows key
-MACRO_1 = [Keycode.ALT, Keycode.Z]
-MACRO_2 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.O] 
-MACRO_3 = [Keycode.GUI, Keycode.CONTROL, Keycode.V]
-MACRO_4 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.E] 
-MACRO_5 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.S]
-MACRO_6 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.J]
-MACRO_7 = [Keycode.F16]
-MACRO_8 = [Keycode.GUI, Keycode.ALT, Keycode.PRINT_SCREEN]
-MACRO_9 = [Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN]
+# MACRO_1 = [Keycode.CONTROL, Keycode.ALT, Keycode.K]
+MACRO_1 = [Keycode.ALT, Keycode.Z]                                  # Open Radeon sidebar
+# MACRO_2 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.O]               # Toggle FPS overlay
+MACRO_2 = [ConsumerControlCode.PLAY_PAUSE]
+MACRO_3 = [Keycode.GUI, Keycode.CONTROL, Keycode.V]                 # Open speaker select
+MACRO_4 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.E]               # Toggle recording
+MACRO_5 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.S]               # Save instant replay
+MACRO_6 = [Keycode.CONTROL, Keycode.SHIFT, Keycode.J]               # Save GIF replay
+MACRO_7 = [Keycode.F16]                                             # Mute
+MACRO_8 = [Keycode.CONTROL, Keycode.ALT, Keycode.I]                 # Save screenshot to disk
+MACRO_9 = [Keycode.CONTROL, Keycode.ALT, Keycode.PRINT_SCREEN]      # Screenshot to clipboard
 
 # RGB
 RGB_mode = 'rainbow'  # 'rainbow' or 'solid'
